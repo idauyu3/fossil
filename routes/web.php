@@ -17,6 +17,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', function() {
-    return view('top');
-});
+Route::get('/', 'PostController@index');
+
+Route::get('/posts/{post}', 'PostController@show');
+
+Route::get('/create', 'PostController@create');
+
+Route::post('/posts', 'PostController@store');
+
+Route::delete('/posts/{post}', 'PostController@delete');
