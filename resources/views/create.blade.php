@@ -8,16 +8,30 @@
         <h1>Blog Name</h1>
         <form action="/posts" method="POST">
             @csrf
-            <div class="title">
+            <div class="JapaneseName">
                 <h2>Title</h2>
-                <input type="text" name="post[title]" placeholder="タイトル" value="{{ old('post.title') }}"/>
-                <p class="title_error" style="color:red">{{ $errors->first('post.title') }}</p>
+                <input type="text" name="post[JapaneseName]" placeholder="タイトル" value="{{ old('post.JapaneseName') }}"/>
+                <p class="title_error" style="color:red">{{ $errors->first('post.JapaneseName') }}</p>
             </div>
-            <div class="body">
-                <h2>Body</h2>
-                <textarea name="post[body]" placeholder="今日も1日お疲れさまでした。">{{ old('post.body') }}</textarea>
-                <p class="title_error" style="color:red">{{ $errors->first('post.body') }}</p>
+            
+            <div class="ScientificName">
+                <h2>ScientificName</h2>
+                <input type="text" name="post[ScientificName]" placeholder="タイトル" value="{{ old('post.ScientificName') }}"/>
+                <p class="ScientificName_error" style="color:red">{{ $errors->first('post.ScientificName') }}</p>
             </div>
+            
+            <div class="comment">
+                <h2>comment</h2>
+                <textarea name="post[comment]" placeholder="今日も1日お疲れさまでした。">{{ old('post.comment') }}</textarea>
+                <p class="title_error" style="color:red">{{ $errors->first('post.comment') }}</p>
+            </div>
+            
+            <div class="image">
+                <h2>image</h2>
+                <input type="text" name="post[image]" placeholder="タイトル" value="{{ old('post.image') }}"/>
+                <p class="image_error" style="color:red">{{ $errors->first('post.image') }}</p>
+            </div>
+            
             <input type="submit" value="保存"/>
         </form>
         <div class="back">[<a href="/">back</a>]</div>

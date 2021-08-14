@@ -12,11 +12,14 @@
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
-                    <h3><a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
-                    <p class='body'>{{ $post->body }}</p>
+                    <h3><a href="/posts/{{ $post->id }}">{{ $post->JapaneseName }}</a></h3>
+                    <h3><a href="/posts/{{ $post->id }}">{{ $post->ScientificName }}</a></h3>
+                    <p class='body'>{{ $post->comment }}</p>
+                    <p class='body'>{{ $post->image }}</p>
                 </div>
             @endforeach
         </div>
+        
         <div class='paginate'>
             {{ $posts->links() }}
         </div>

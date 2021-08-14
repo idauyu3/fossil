@@ -26,3 +26,9 @@ Route::get('/create', 'PostController@create');
 Route::post('/posts', 'PostController@store');
 
 Route::delete('/posts/{post}', 'PostController@delete');
+
+Route::get('/images', 'ImageController@index');
+
+Route::get('/image/form', 'ImageController@form');
+
+Route::post('/image/store', 'ImageController@store');
