@@ -9,20 +9,34 @@
         <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>
-        <h1 class="title">
-            {{ $post->title }}
+        <h1 class="JapaneseName">
+            {{ $post->JapaneseName }}
         </h1>
+        
+        <h1 class="ScientificName">
+            {{ $post->ScientificName }}
+        </h1>
+        
         <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
             @csrf
             @method('DELETE')
             <button type="submit">delete</button>
         </form>
+        
         <div class="content">
             <div class="content__post">
                 <h3>本文</h3>
-                <p>{{ $post->body }}</p>    
+                <p>{{ $post->comment }}</p>    
             </div>
         </div>
+        
+        <div class="image">
+            <div class="image__post">
+                <h3>本文</h3>
+                <p>{{ $post->image }}</p>    
+            </div>
+        </div>
+        
         <div class="footer">
             <a href="/">戻る</a>
         </div>

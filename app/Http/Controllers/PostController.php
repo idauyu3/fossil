@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
-use App\Http\Requests\PostRequest;
+use App\Fossil_post;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -13,12 +13,12 @@ class PostController extends Controller
     * @param Post Postモデル
     * @return array Postモデルリスト
     */
-    public function index(Post $post)
+    public function index(Fossil_post $post)
     {
         return view('index')->with(['posts' => $post->getPaginateByLimit()]);
     }
     
-    public function show(Post $post)
+    public function show(Fossil_post $post)
     {
         return view('show')->with(['post' => $post]);
     }
@@ -28,17 +28,17 @@ class PostController extends Controller
         return view('create');
     }
     
-    public function store(Post $post, PostRequest $request)
+    public function store(Fossil_post $post, Request $request)
     {
         $input = $request['post'];
         $post->fill($input)->save();
         return redirect('/posts/' . $post->id);
     }
     
-    public function delete(Post $post)
+    public function delete(Fossil_post $post)
     {
         $post->delete();
         return redirect('/posts');
     }
-
+    
 }
