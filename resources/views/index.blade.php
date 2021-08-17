@@ -12,6 +12,7 @@
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
+                    <h3><?php $user = Auth::user(); ?>{{ $user->name }}</h3>
                     <h3><a href="/posts/{{ $post->id }}">{{ $post->JapaneseName }}</a></h3>
                     <h3><a href="/posts/{{ $post->id }}">{{ $post->ScientificName }}</a></h3>
                     <p class='body'>{{ $post->comment }}</p>

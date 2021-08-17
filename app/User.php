@@ -36,4 +36,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function fossil_posts()
+    {
+        return $this->hasMany('App\Fossil_post');
+    }//リレーション
 }

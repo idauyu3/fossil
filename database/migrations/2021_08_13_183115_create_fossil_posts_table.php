@@ -19,8 +19,8 @@ class CreateFossilPostsTable extends Migration
             $table->string('ScientificName');
             $table->LongText('comment');
             $table->string('image');
-            //$table->integer('user_id')->unsigned(); //外部キー
-            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('user_id')->unsigned(); //外部キー
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
