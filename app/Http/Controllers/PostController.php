@@ -31,6 +31,7 @@ class PostController extends Controller
     public function store(Fossil_post $post, Request $request)
     {
         $input = $request['post'];
+        $post->user_id = $request->user()->id;
         $post->fill($input)->save();
         return redirect('/posts/' . $post->id);
     }

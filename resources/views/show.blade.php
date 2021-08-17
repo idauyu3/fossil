@@ -25,14 +25,12 @@
         
         <div class="content">
             <div class="content__post">
-                <h3>本文</h3>
                 <p>{{ $post->comment }}</p>    
             </div>
         </div>
         
         <div class="image">
             <div class="image__post">
-                <h3>本文</h3>
                 <p>{{ $post->image }}</p>    
             </div>
         </div>
