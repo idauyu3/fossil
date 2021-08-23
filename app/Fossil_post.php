@@ -15,6 +15,11 @@ class Fossil_post extends Model
         return $this->orderBy('updated_at', 'DESC')->limit($limit_count)->get();
     }
     
+    public function searchQuery($keyword)
+    {
+        return $this->where('JapaneseName', 'LIKE', "%{$keyword}%")->orwhere('ScientificName', 'LIKE', "%{$keyword}%")->paginate(5);
+    }
+    
     public function getPaginateByLimit(int $limit_count = 10)
     {
         // updated_atで降順に並べたあと、limitで件数制限をかける

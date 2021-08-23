@@ -10,8 +10,8 @@ class ImageController extends Controller
 {
     public function index()
     {
-        $images = Image::all();
-        return view('indexImage',compact('images')); 
+        $images = Image::all(); 
+        return view('index', compact('images')); 
      }
 
     public function form()
@@ -40,4 +40,3 @@ class ImageController extends Controller
 
     }
 }
-

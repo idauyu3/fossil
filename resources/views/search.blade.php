@@ -1,28 +1,30 @@
 <!DOCTYPE html>
-<html lang ="{{ str_replace('_','-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>fossil</title>
+        <title>Blog</title>
+        <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <header>
-            <div class="container">
-                <div class="header-left">
-                    <a>化石</a>
+        <div class='search'>
+            @foreach ($search_posts as $search_post)
+                <div class='post'>
+                    <h3>{{ $search_post->user->name }}</h3>
+                    <h3><a href="/posts/{{ $search_post->id }}">{{ $search_post->JapaneseName }}</a></h3>
+                    <h3><a href="/posts/{{ $search_post->id }}">{{ $search_post->ScientificName }}</a></h3>
+                    <p class='body'>{{ $search_post->comment }}</p>
+                    <div class="image">
+            
+                        <img src="{{ Storage::url( $search_post->image) }}">
+
+                    </div>
                 </div>
-                <div class="header-right">
-                    <a href="?" class="register">新規登録</a>
-                    <a href="?" class="login">ログイン</a>
-                </div>
-                <div class="header-under">
-                    <a href="?" class="search">探す</a>
-                    <a href="?" class="post">投稿する</a>
-                </div>
-            </div>
-        </header>
-        <div class="logo">
-            <h1>化石</h1>
+            @endforeach
         </div>
         
+        <!--<div class='paginate'>-->
+        {{--{{ $search_posts->links() }}--}}
+        <!--</div>-->
     </body>
+</html>

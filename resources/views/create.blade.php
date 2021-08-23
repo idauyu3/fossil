@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Blog Name</h1>
-        <form action="/posts" method="POST">
+        <form action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="JapaneseName">
                 <h2>Title</h2>
@@ -26,10 +26,11 @@
                 <p class="title_error" style="color:red">{{ $errors->first('post.comment') }}</p>
             </div>
             
-            <div class="image">
+
+            
+            <div class="image-group">
                 <h2>image</h2>
-                <input type="text" name="post[image]" placeholder="タイトル" value="{{ old('post.image') }}"/>
-                <p class="image_error" style="color:red">{{ $errors->first('post.image') }}</p>
+                <input type="file" name="image" accept="image/png, image/jpeg">
             </div>
             
             <input type="submit" value="保存"/>
