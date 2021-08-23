@@ -16,7 +16,7 @@
         <h1 class="ScientificName">
             {{ $post->ScientificName }}
         </h1>
-        
+        a
         <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
             @csrf
             @method('DELETE')
@@ -30,9 +30,9 @@
         </div>
         
         <div class="image">
-            <div class="image__post">
-                <p>{{ $post->image }}</p>    
-            </div>
+            
+            <img src="{{ Storage::url( $post->image) }}">
+
         </div>
         
         <div class="footer">

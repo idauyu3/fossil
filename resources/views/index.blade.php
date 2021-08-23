@@ -8,15 +8,27 @@
     </head>
     <body>
         <h1>Blog Name</h1>
-        [<a href='/create'>create</a>]
+        
+        <form action='/posts/search' method="GET">
+            @csrf
+            <p><input type="text" name="keyword" value="{{request('keyword')}}"></p>
+            <p><input type="submit" value="検索"></p>
+        </form>
+        
+        [<a href='/posts/create'>create</a>]
+        
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
-                    <h3><?php $user = Auth::user(); ?>{{ $user->name }}</h3>
+                    <h3>{{ $post->user->name }}</h3>
                     <h3><a href="/posts/{{ $post->id }}">{{ $post->JapaneseName }}</a></h3>
                     <h3><a href="/posts/{{ $post->id }}">{{ $post->ScientificName }}</a></h3>
                     <p class='body'>{{ $post->comment }}</p>
-                    <p class='body'>{{ $post->image }}</p>
+                    <div class="image">
+            
+                        <img src="{{ Storage::url( $post->image) }}">
+
+                    </div>
                 </div>
             @endforeach
         </div>
