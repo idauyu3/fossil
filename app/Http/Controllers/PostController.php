@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Fossil_post;
 use App\Image;
+use App\Like;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -104,4 +106,31 @@ class PostController extends Controller
         return redirect('/');
     }
     
+    //↓いいね機能の設定
+    public function _construct()
+    {
+        $this->middleware(['auth', 'verified'])->only(['like', 'unlike']);
+    }
+    
+    public function like($id)
+    {
+        Like::create([
+           'fossil_post_id' => $id,
+           'user_id' => Auth::id(),
+        ]);
+        
+        session()->flash('succes', 'You Liked the Reply.');
+        
+        return redirect()->back();
+    }
+    
+    public function unlike($id)
+    {
+        $like = Like::where('fossil_post_id', $id)->where('user_id', Auth::id())->first();
+        $like->delete();
+        
+        session()->flash('success', 'You Unlike the Reply.');
+        
+        return redirect()->back();
+    }
 }
