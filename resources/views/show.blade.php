@@ -24,6 +24,16 @@
         </form>
         <p class="edit">[<a href="/posts/{{ $post->id }}/edit">edit</a>]</p>
         
+        <div>
+            @if($post->is_like_by_auth_user())
+                <a href="{{ route('reply.unlike', ['id' => $post->id]) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $post->likes->count() }}</span></a>
+            @else
+                <a href="{{ route('reply.like', ['id' => $post->id]) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $post->likes->count() }}</span></a>
+            @endif
+        </div>
+        
+        {{ $post->likes->count() }}
+        
         <div class="content">
             <div class="content__post">
                 <p>{{ $post->comment }}</p>    
