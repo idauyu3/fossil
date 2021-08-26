@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Fossil_post;
+use App\Image;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -36,6 +37,11 @@ class PostController extends Controller
         return view('create');
     }
     
+    public function edit(Fossil_post $post)
+    {
+        return view('edit')->with(['post' => $post]);
+    }
+    
     public function search(Request $request)
     {
         $keyword = $request->input('keyword');
@@ -51,21 +57,44 @@ class PostController extends Controller
         return view('search')->with(['search_posts' => $search_posts]);
     }
     
+    public function update(Request $request, Fossil_post $post)
+    {
+        $input_post = $request['post'];
+        
+        if($request->hasFile('image')) {
+            Fossil_post::delete('public/image/' . $post->image);
+            $image = $request->file('image')->store('public/image');
+            $post->image = basename($post);
+            $post->save();
+        }
+        
+        $post->fill($input_post)->save();
+        
+        return redirect('/posts/' . $post->id);
+    }
+    
     public function store(Fossil_post $post, Request $request)
     {
         $input = $request['post'];
         $post->user_id = $request->user()->id;
         
-        
-        $image = $request->file('image');
-        if($request->hasFile('image') && $image->isValid())
-        {
-            $image = $image->getClientOriginalName();
-        }
-        
-        $input += ['image' => $request->file('image')->storeAs('public/images',$image)];
-        
         $post->fill($input)->save();
+        
+        $files = $request->file('image');
+        foreach($files as $file) {
+            if($request->hasFile('image') && $file->isValid())
+            {
+                $file_name = $file->getClientOriginalName();
+            }
+        
+            //$input += ['image' => $request->file('image')->storeAs('public/images',$image)];
+            
+            $image = new Image();
+            
+            $image->path = $file->storeAs('public/images', $file_name);
+            $image->fossil_post_id = $post->id;
+            $image->save();
+        }
         return redirect('/posts/' . $post->id);
     }
     

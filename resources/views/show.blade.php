@@ -16,12 +16,13 @@
         <h1 class="ScientificName">
             {{ $post->ScientificName }}
         </h1>
-        a
+        
         <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
             @csrf
             @method('DELETE')
             <button type="submit">delete</button>
         </form>
+        <p class="edit">[<a href="/posts/{{ $post->id }}/edit">edit</a>]</p>
         
         <div class="content">
             <div class="content__post">
@@ -29,10 +30,11 @@
             </div>
         </div>
         
+        
         <div class="image">
-            
-            <img src="{{ Storage::url( $post->image) }}">
-
+            @foreach($post->images as $image)
+                <img src="{{ Storage::url($image->path) }}">
+            @endforeach
         </div>
         
         <div class="footer">

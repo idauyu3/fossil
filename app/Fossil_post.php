@@ -31,6 +31,11 @@ class Fossil_post extends Model
         return $this->belongsTo('App\User');
     }//リレーション
     
+    public function images() 
+    {
+        return $this->hasMany('App\Image');
+    }
+    
     protected $fillable = [
         'JapaneseName',
         'ScientificName',
