@@ -26,13 +26,11 @@
                 <p class="title_error" style="color:red">{{ $errors->first('post.comment') }}</p>
             </div>
             
-
-            
             <div class="image-group">
                 <h2>image</h2>
-                <input type="file" name="image" accept="image/png, image/jpeg">
+                <input type="file" name="image[]" accept="image/png, image/jpeg" multiple>
             </div>
-            
+
             <input type="submit" value="保存"/>
         </form>
         <div class="back">[<a href="/">back</a>]</div>

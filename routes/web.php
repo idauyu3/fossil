@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/posts/create', 'PostController@create');
     Route::get('/posts/search', 'PostController@search');
     Route::get('/posts/{post}', 'PostController@show');
-    //Route::put('/posts/{post}', 'PostController@update');
-    Route::delete('/posts/{post}', 'PostController@delete');
+    Route::put('/posts/{post}', 'PostController@update');
     Route::get('/posts/{post}/edit', 'PostController@edit');
+    Route::delete('/posts/{post}', 'PostController@delete');
 });
