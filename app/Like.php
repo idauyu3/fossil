@@ -9,7 +9,7 @@ class Like extends Model
     //いいね機能
     protected $fillable = ['fossil_post_id', 'user_id'];
     
-    public function reply()
+    public function fossil_post()
     {
       return $this->belongsTo(Fossil_post::class);
     }
