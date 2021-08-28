@@ -19,14 +19,16 @@ class PostController extends Controller
     public function index(Fossil_post $post, Request $request)
     {
         return view('index')->with(['posts' => $post->searchQuery(request('keyword'))]);
-        
-        //$keyword = request('keyword');
-        //dd($keyword);
-        
-        //return view('index', compact('keyword', 'posts'));
     }
     
-
+    public function ranking()
+    {
+        $rankingPostlikes = Fossil_post::withCount('likes')->orderBy('likes_count', 'desc')->paginate(10);
+        
+        return view('ranking', [
+            'rankingPostLikes' => $rankingPostlikes,        
+        ]);
+    }
     
     
     public function show(Fossil_post $post)
