@@ -7,6 +7,7 @@ use App\Image;
 use App\Like;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+//use \InterventionImage;
 
 class PostController extends Controller
 {
@@ -92,6 +93,8 @@ class PostController extends Controller
             }
         
             //$input += ['image' => $request->file('image')->storeAs('public/images',$image)];
+            
+            //InterventionImage::make($files)->resize(900, 700)->save(public_path('/images/' . $file_name ) );;
             
             $image = new Image();
             
