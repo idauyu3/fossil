@@ -62,6 +62,5 @@ class Fossil_post extends Model
         'JapaneseName',
         'ScientificName',
         'comment',
-        'image',
         ];
 }

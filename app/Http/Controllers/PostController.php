@@ -19,6 +19,8 @@ class PostController extends Controller
     */
     public function index(Fossil_post $post, Request $request)
     {
+        //$post_new = Article::orderBy('id', 'desc')->get();
+        //return view('index', [''])->with(['posts' => $post->searchQuery(request('keyword'))]);
         return view('index')->with(['posts' => $post->searchQuery(request('keyword'))]);
     }
     
