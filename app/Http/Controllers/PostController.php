@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Fossil_post;
 use App\Image;
 use App\Like;
+use Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 //use \InterventionImage;
@@ -52,7 +53,7 @@ class PostController extends Controller
     public function search(Request $request)
     {
         $keyword = $request->input('keyword');
-        
+
         $query = Fossil_post::query();
         
         if (!empty($keyword)) {
@@ -98,9 +99,11 @@ class PostController extends Controller
             
             //InterventionImage::make($files)->resize(900, 700)->save(public_path('/images/' . $file_name ) );;
             
-            $image = new Image();
+            $image = new Image;
             
-            $image->path = $file->storeAs('public/images', $file_name);
+            $path = Storage::disk('s3')->putFile('myprefix', $file, 'public');
+            
+            $image->image_path = Storage::disk('s3')->url($path);
             $image->fossil_post_id = $post->id;
             $image->save();
         }

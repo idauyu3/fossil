@@ -53,11 +53,11 @@
                         @foreach($post->images as $index => $image)
                             @if ($index === 0)
                                 <div class="carousel-item active">
-                                    <img class="d-block w-40 h-40" src="{{ Storage::url($image->path) }}">
+                                    <img class="d-block w-40 h-40" src="{{ $image->image_path }}">
                                 </div>
                             @else
                                 <div class="carousel-item">
-                                    <img class="d-block w-40 h-40" src="{{ Storage::url($image->path) }}">
+                                    <img class="d-block w-40 h-40" src="{{ $image->image_path }}">
                                 </div>
                             @endif
                         @endforeach

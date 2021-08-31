@@ -17,12 +17,12 @@
             <div class="container">
                 <h1>化石</h1>
                 <!-- to get an API token! -->
-                <form class="form-subscribe" id="contactFrom" action='/posts/search' method="GET">
+                <form class="form-subscribe" id="contactFrom" action='/posts/search' method="POST">
                     <!-- fossil_input -->
                     <div class="row">
                         <div class="col">
                             @csrf
-                            <input class="form-control from-control-lg" id="keyword" type="text" placeholder="キーワードを入力してください" value="{{request('keyword')}}" />
+                            <input class="form-control from-control-lg" name="keyword" type="text" placeholder="キーワードを入力してください" value="{{request('keyword')}}" />
                         </div>
                         <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">検索</button></div>
                     </div>
@@ -65,11 +65,11 @@
                                 @foreach($post->images as $index => $image)
                                     @if ($index === 0)
                                         <div class="carousel-item active">
-                                            <img class="d-block w-40 h-40" src="{{ Storage::url($image->path) }}">
+                                            <img class="d-block w-40 h-40" src="{{ $image->image_path}}">
                                         </div>
                                     @else
                                         <div class="carousel-item">
-                                            <img class="d-block w-40 h-40" src="{{ Storage::url($image->path) }}">
+                                            <img class="d-block w-40 h-40" src="{{ $image->image_path}}">
                                         </div>
                                     @endif
                                 @endforeach

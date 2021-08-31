@@ -16,7 +16,7 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->Increments('id');
             $table->integer('fossil_post_id')->unsigned();
-            $table->binary('path');
+            $table->string('image_path')->nullable();
             $table->foreign('fossil_post_id')->references('id')->on('fossil_posts')->onDelete('cascade');
             $table->timestamps();
         });

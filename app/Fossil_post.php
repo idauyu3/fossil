@@ -18,7 +18,7 @@ class Fossil_post extends Model
     
     public function searchQuery($keyword)
     {
-        return $this->where('JapaneseName', 'LIKE', "%{$keyword}%")->orwhere('ScientificName', 'LIKE', "%{$keyword}%")->paginate(5);
+        return $this->where('JapaneseName', 'LIKE', "%{$keyword}%")->orwhere('ScientificName', 'LIKE', "%{$keyword}%")->orderBy('updated_at', 'DESC')->paginate(5);
     }
     
     public function getPaginateByLimit(int $limit_count = 10)
